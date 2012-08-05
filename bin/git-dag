@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/git-dag"
+require 'git-dag'
 
 GitDag::Application.run(ARGV[0])
 
