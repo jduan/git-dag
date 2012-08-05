@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/git-dag"
+
+GitDag::Application.run(ARGV[0])
+
+# vim: set filetype=ruby
