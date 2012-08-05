@@ -65,7 +65,7 @@ class MyCommit
   end
 
   def label
-    %Q([color="#{color}",label="#{short_sha1}"])
+    %Q([color="#{color}"])
   end
 
   def color
@@ -83,14 +83,11 @@ class MyCommit
   end
 
   def short_sha1
-    ret = @grit_commit.id[0,6]
-    ret += ", #{branch}" if branch
-
-    ret
+    @grit_commit.id[0,6]
   end
 
   def dot_node
-    "prefix" + @grit_commit.id
+    %Q("#{short_sha1}")
   end
 
   def add_parent(parent)
