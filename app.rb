@@ -24,9 +24,8 @@ class GitGraph
     all_commits.each do |id, node|
       node.parents.each do |parent|
         dot_str << "#{node.dot_node} -> #{parent.dot_node};\n"
-        dot_str << %Q(#{node.dot_node} #{node.label};\n)
-        dot_str << %Q(#{parent.dot_node} #{parent.label};\n)
       end
+      dot_str << %Q(#{node.dot_node} #{node.label};\n)
     end
     dot_str << "}\n"
   end
