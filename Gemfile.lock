@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    git-dag (0.0.2)
+    git-dag (0.0.3)
       grit (~> 2.5.0)
 
 GEM

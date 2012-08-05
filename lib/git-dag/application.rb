@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'grit'
-require 'pry'
 
 module GitDag
   module Application
