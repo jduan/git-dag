@@ -13,8 +13,9 @@ module GitDag
       get_dot_str(all_commits)
     end
 
+    private
+
     def get_dot_str(all_commits)
-      #puts "all_commits: #{all_commits.size}"
       dot_str = "digraph G {\n"
       all_commits.each do |id, node|
         node.parents.each do |parent|
@@ -32,13 +33,11 @@ module GitDag
       @all_branches.each do |branch|
         commits = find_commits_per_branch(branch.name)
         commits.each do |commit|
-          my_commit = CommitNode.new(commit)
+          my_commit = create_commit_node(commit)
           all_commits[commit.id] = my_commit unless all_commits.has_key? commit.id
-          #puts "adding #{commit.id} to hash"
           commit.parents.each do |parent|
-            parent_commit = CommitNode.new(parent)
+            parent_commit = create_commit_node(parent)
             my_commit.add_parent(parent_commit)
-            #all_commits[parent.id] = parent_commit unless all_commits.has_key? parent.id
           end
         end
 
@@ -70,6 +69,10 @@ module GitDag
 
     def find_commits_per_branch(branch)
       @repo.commits(branch, false) # false indicates all commits
+    end
+
+    def create_commit_node(commit)
+      commit.parents.size > 1 ? MergeNode.new(commit) : CommitNode.new(commit)
     end
   end
 end

@@ -14,9 +14,7 @@ module GitDag
     end
 
     def add_parent(parent)
-      #puts "commit #{id} add parent #{parent.id}"
       @parents << parent
-      #puts "parents: #{@parents}" if id =~ /07da/
     end
 
     def dot_node
@@ -25,19 +23,11 @@ module GitDag
 
     private
     def color
-      if merge?
-        "red"
-      else
-        "black"
-      end
+      "black"
     end
 
     def short_sha1
       @grit_commit.id[0,6]
-    end
-
-    def merge?
-      @parents.size > 1
     end
   end
 end
