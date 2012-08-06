@@ -22,6 +22,8 @@ module GitDag
         end
         dot_str << %Q(#{node.dot_node} #{node.label};\n)
       end
+      dot_str << Legend.dot_output
+
       dot_str << "}\n"
     end
 
