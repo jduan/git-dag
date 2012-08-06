@@ -32,6 +32,10 @@ digraph G {
 "dev" [color="blue" shape=box];
 "master" -> "8b61ae";
 "master" [color="blue" shape=box];
+"0.0.1" -> "c554da";
+"0.0.1" [color="green" shape=circle];
+"0.0.2" -> "37f6a9";
+"0.0.2" [color="green" shape=circle];
 }
 HERE
 

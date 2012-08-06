@@ -9,6 +9,7 @@ module GitDag
 
     def output_dot_file
       all_commits = build_entire_graph
+      add_tag_nodes(all_commits)
       get_dot_str(all_commits)
     end
 
@@ -44,6 +45,18 @@ module GitDag
         all_commits[fake_head.id] = fake_head
       end
       all_commits
+    end
+
+    def add_tag_nodes(all_commits)
+      @repo.tags.each do |tag|
+        commit = tag.commit
+        parent_commit = all_commits.find {|id, c| id == commit.id}[1]
+        id = tag.name
+        dot_node = %Q("#{tag.name}")
+        label = %Q([color="green" shape=circle])
+        tag_node = TagNode.new(id, dot_node, label, [parent_commit])
+        all_commits[tag_node.id] = tag_node
+      end
     end
 
     def create_fake_commit_for_head(branch_name, parent)
