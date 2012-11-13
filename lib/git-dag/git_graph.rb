@@ -9,7 +9,7 @@ module GitDag
 
     def output_dot_file
       all_commits = build_entire_graph
-      add_tag_nodes(all_commits)
+      #add_tag_nodes(all_commits)
       get_dot_str(all_commits)
     end
 
